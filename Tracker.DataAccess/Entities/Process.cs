@@ -4,7 +4,7 @@ namespace Tracker.DataAccess.Entities
 {
     public class Process
     {
-        public int Identifier { get; set; }
+        public int Id { get; set; }
 
         public ProcessType ProcessType { get; set; }
 

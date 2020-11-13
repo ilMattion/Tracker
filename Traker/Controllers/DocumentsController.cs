@@ -24,7 +24,8 @@ namespace Tracker.Controllers
         [HttpPost]
         public IActionResult CreateDocument([FromBody] DocumentDto documentDto)
         {
-            return Ok();
+            int documentId = documentService.Create(documentDto);
+            return Created($"/documents/{documentId}", documentDto);
         }
 
         [HttpGet]

@@ -6,7 +6,7 @@ namespace Tracker.DataAccess.Entities
 {
     public class Document
     {
-        public int Identifier { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

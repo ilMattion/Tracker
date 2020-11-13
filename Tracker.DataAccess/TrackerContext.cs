@@ -3,9 +3,9 @@ using Tracker.DataAccess.Entities;
 
 namespace Tracker.DataAccess
 {
-    public class TrakerContext : DbContext
+    public class TrackerContext : DbContext
     {
-        public TrakerContext(DbContextOptions<TrakerContext> options) : base(options) { }
+        public TrackerContext(DbContextOptions<TrackerContext> options) : base(options) { }
 
         public DbSet<Document> Documents { get; set; }
 

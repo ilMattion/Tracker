@@ -8,9 +8,16 @@ namespace Tracker.DataAccess.Repositories
 {
     public class DocumentRepository : IDocumentRepository
     {
+        private readonly TrackerContext trackerContext;
+
+        public DocumentRepository(TrackerContext trakerContext)
+        {
+            this.trackerContext = trakerContext;
+        }
         public int Create(Document document)
         {
-            throw new NotImplementedException();
+            trackerContext.Add(document);
+            return document.Id;
         }
 
         public IEnumerable<Document> GetAll()
