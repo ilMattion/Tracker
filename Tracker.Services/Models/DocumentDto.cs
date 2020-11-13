@@ -1,4 +1,4 @@
-﻿namespace Tracker.Models
+﻿namespace Tracker.Services.Models
 {
     public class DocumentDto
     {

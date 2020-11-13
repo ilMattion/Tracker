@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using Tracker.Models;
+using Tracker.Services.Contracts;
+using Tracker.Services.Models;
 
 namespace Tracker.Controllers
 {
@@ -9,10 +11,12 @@ namespace Tracker.Controllers
     [Route("[controller]")]
     public class DocumentsController : ControllerBase
     {
+        private readonly IDocumentService documentService;
         private readonly ILogger<DocumentsController> _logger;
 
-        public DocumentsController(ILogger<DocumentsController> logger)
+        public DocumentsController(IDocumentService documentService, ILogger<DocumentsController> logger)
         {
+            this.documentService = documentService;
             _logger = logger;
         }
 

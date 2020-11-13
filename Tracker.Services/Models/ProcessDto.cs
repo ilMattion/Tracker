@@ -1,4 +1,6 @@
-﻿namespace Tracker.Models
+﻿using Tracker.Models;
+
+namespace Tracker.Services.Models
 {
     public class ProcessDto
     {
