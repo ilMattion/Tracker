@@ -27,7 +27,7 @@ namespace Tracker.DataAccess.Repositories
             return trackerContext.Documents.Any(doc => doc.Id == documentId);
         }
 
-        public IEnumerable<Document> GetAll()
+        public IEnumerable<Document> Report()
         {
             throw new NotImplementedException();
         }

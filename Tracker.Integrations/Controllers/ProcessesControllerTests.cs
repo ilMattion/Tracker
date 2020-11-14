@@ -1,13 +1,11 @@
-﻿using FluentAssertions;
+﻿using AutoFixture;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using AutoFixture;
-using Tracker.Services.Models;
 using Tracker.DataAccess.Entities;
+using Tracker.Services.Models;
 
 namespace Tracker.Integrations.Controllers
 {

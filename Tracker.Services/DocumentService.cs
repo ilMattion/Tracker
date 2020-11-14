@@ -45,5 +45,11 @@ namespace Tracker.Services
 
             return processRepository.Create(process);
         }
+
+        public IEnumerable<DocumentDto> Report()
+        {
+            var documents = documentRepository.Report();
+            return mapper.Map<IList<DocumentDto>>(documents);
+        }
     }
 }

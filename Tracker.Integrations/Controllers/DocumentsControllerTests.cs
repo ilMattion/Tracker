@@ -31,7 +31,7 @@ namespace Tracker.Integrations.Controllers
             var documentDto = fixture.Create<DocumentDto>();
 
             // Act
-            var httpResponseMessage = await httpClient.PostAsync("documents", ObjectToJsonContent(documentDto));
+            await httpClient.PostAsync("documents", ObjectToJsonContent(documentDto));
 
             // Assert
             TrackerContext.Documents.FirstOrDefault()

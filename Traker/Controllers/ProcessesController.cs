@@ -16,6 +16,11 @@ namespace Tracker.Controllers
             this.documentService = documentService;
         }
 
+        /// <summary>
+        /// This API let you get all processes by its document.
+        /// </summary>
+        /// <param name="documentIdentifier"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("processes")]
         public ActionResult<IEnumerable<ProcessDto>> GetProcesses(int documentIdentifier)
@@ -30,6 +35,12 @@ namespace Tracker.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// This API let you create one process.
+        /// </summary>
+        /// <param name="documentIdentifier"></param>
+        /// <param name="processDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("processes")]
         public IActionResult CreateProcess(int documentIdentifier, [FromBody] ProcessDto processDto)

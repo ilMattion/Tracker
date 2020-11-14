@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using Tracker.Models;
 using Tracker.Services.Contracts;
 using Tracker.Services.Models;
 
@@ -12,20 +9,34 @@ namespace Tracker.Controllers
     public class DocumentsController : ControllerBase
     {
         private readonly IDocumentService documentService;
-        private readonly ILogger<DocumentsController> _logger;
 
-        public DocumentsController(IDocumentService documentService, ILogger<DocumentsController> logger)
+        public DocumentsController(IDocumentService documentService)
         {
             this.documentService = documentService;
-            _logger = logger;
         }
 
-
+        /// <summary>
+        /// This API let you create one document.
+        /// </summary>
+        /// <param name="documentDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CreateDocument([FromBody] DocumentDto documentDto)
         {
             int documentId = documentService.Create(documentDto);
             return Created($"/documents/{documentId}", documentDto);
+        }
+
+        /// <summary>
+        /// This API let you get one report of actual document.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("report")]
+        public IActionResult Report()
+        {
+            var result = documentService.Report();
+
+            return Ok(result);
         }
     }
 }
