@@ -7,11 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tracker.DataAccess;
 using Tracker.DataAccess.Contracts;
-using Tracker.DataAccess.Entities;
 using Tracker.DataAccess.Repositories;
 using Tracker.Services;
 using Tracker.Services.Contracts;
-using Tracker.Services.Models;
 
 namespace Tracker
 {

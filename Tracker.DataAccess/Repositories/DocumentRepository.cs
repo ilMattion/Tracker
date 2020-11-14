@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Tracker.DataAccess.Contracts;
 using Tracker.DataAccess.Entities;
 
@@ -17,6 +16,7 @@ namespace Tracker.DataAccess.Repositories
         public int Create(Document document)
         {
             trackerContext.Add(document);
+            trackerContext.SaveChanges();
             return document.Id;
         }
 
