@@ -8,5 +8,6 @@ namespace Tracker.Services.Contracts
         int Create(DocumentDto document);
         bool Exists(int documentIndentifier);
         IEnumerable<ProcessDto> GetProcesses(int documentIndentifier);
+        int CreateProcess(int documentIdentifier, ProcessDto processDto);
     }
 }

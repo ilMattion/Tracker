@@ -5,7 +5,7 @@ namespace Tracker.DataAccess.Contracts
 {
     public interface IProcessRepository
     {
-        long Create(Process process);
+        int Create(Process process);
         IEnumerable<Process> GetByDocumentId(int documentIndentifier);
     }
 }

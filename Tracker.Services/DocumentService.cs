@@ -37,5 +37,13 @@ namespace Tracker.Services
             var processes = processRepository.GetByDocumentId(documentIndentifier);
             return mapper.Map<IList<ProcessDto>>(processes);
         }
+
+        public int CreateProcess(int documentIdentifier, ProcessDto processDto)
+        {
+            processDto.DocumentId = documentIdentifier;
+            var process = mapper.Map<Process>(processDto);
+
+            return processRepository.Create(process);
+        }
     }
 }

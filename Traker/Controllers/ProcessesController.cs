@@ -6,7 +6,7 @@ using Tracker.Services.Models;
 namespace Tracker.Controllers
 {
     [ApiController]
-    [Route("documents/{documentIndentifier}")]
+    [Route("documents/{documentIdentifier}")]
     public class ProcessesController : ControllerBase
     {
         private readonly IDocumentService documentService;
@@ -18,14 +18,14 @@ namespace Tracker.Controllers
 
         [HttpGet]
         [Route("processes")]
-        public ActionResult<IEnumerable<ProcessDto>> GetProcesses(int documentIndentifier)
+        public ActionResult<IEnumerable<ProcessDto>> GetProcesses(int documentIdentifier)
         {
-            if (!documentService.Exists(documentIndentifier))
+            if (!documentService.Exists(documentIdentifier))
             {
                 return NotFound();
             }
 
-            IEnumerable<ProcessDto> result = documentService.GetProcesses(documentIndentifier);
+            IEnumerable<ProcessDto> result = documentService.GetProcesses(documentIdentifier);
 
             return Ok(result);
         }
@@ -34,7 +34,14 @@ namespace Tracker.Controllers
         [Route("processes")]
         public IActionResult CreateProcess(int documentIdentifier, [FromBody] ProcessDto processDto)
         {
-            return Ok();
+            if (!documentService.Exists(documentIdentifier))
+            {
+                return BadRequest();
+            }
+
+            documentService.CreateProcess(documentIdentifier, processDto);
+
+            return Created($"documents/{documentIdentifier}/processes", processDto);
         }
     }
 }

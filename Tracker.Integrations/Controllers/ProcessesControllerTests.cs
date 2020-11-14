@@ -64,5 +64,40 @@ namespace Tracker.Integrations.Controllers
             // Assert
             result.Should().BeEquivalentTo(document.Processes);
         }
+
+
+        [TestMethod]
+        public async Task CreateProcess_ParameterDocumentIdNotExists_ReturnBadRequest()
+        {
+            // Arrange
+            var documentId = fixture.Create<int>();
+            var processDto = fixture.Create<ProcessDto>();
+
+            // Act
+            var httpResponseMessage = await httpClient.PostAsync($"documents/{documentId}/processes", ObjectToJsonContent(processDto));
+
+            // Assert
+            httpResponseMessage.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [TestMethod]
+        public async Task CreateProcess_ValidParameters_ReturnCreated()
+        {
+            // Arrange
+            var document = fixture.Build<Document>()
+                .With(entity => entity.Processes, (IList<Process>)null)
+                .Create();
+
+            TrackerContext.Add(document);
+            TrackerContext.SaveChanges();
+
+            var processDto = fixture.Create<ProcessDto>();
+
+            // Act
+            var httpResponseMessage = await httpClient.PostAsync($"documents/{document.Id}/processes", ObjectToJsonContent(processDto));
+
+            // Assert
+            httpResponseMessage.StatusCode.Should().Be(HttpStatusCode.Created);
+        }
     }
 }

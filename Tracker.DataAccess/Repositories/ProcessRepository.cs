@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Tracker.DataAccess.Contracts;
 using Tracker.DataAccess.Entities;
@@ -15,9 +14,11 @@ namespace Tracker.DataAccess.Repositories
             this.trackerContext = trakerContext;
         }
 
-        public long Create(Process process)
+        public int Create(Process process)
         {
-            throw new NotImplementedException();
+            trackerContext.Processes.Add(process);
+            trackerContext.SaveChanges();
+            return process.Id;
         }
 
         public IEnumerable<Process> GetByDocumentId(int documentIndentifier)
