@@ -4,12 +4,12 @@ namespace Tracker.Services.Models
 {
     public class ProcessDto
     {
-        public int Identifier { get; set; }
+        public int Id { get; set; }
 
         public ProcessType ProcessType { get; set; }
 
         public int TimeSpent { get; set; }
 
-        // TODO: Risultato del processo?
+        public int DocumentId { get; set; }
     }
 }

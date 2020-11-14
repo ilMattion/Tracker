@@ -27,19 +27,5 @@ namespace Tracker.Controllers
             int documentId = documentService.Create(documentDto);
             return Created($"/documents/{documentId}", documentDto);
         }
-
-        [HttpGet]
-        [Route("{documentIdentifier}/processes")]
-        public IEnumerable<ProcessDto> GetProcesses(int documentIndentifier)
-        {
-            return null;
-        }
-
-        [HttpPost]
-        [Route("{documentIdentifier}/processes")]
-        public IActionResult CreateProcess(int documentIdentifier, [FromBody] ProcessDto processDto)
-        {
-            return Ok();
-        }
     }
 }

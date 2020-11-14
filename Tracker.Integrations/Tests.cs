@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -48,5 +49,16 @@ namespace Tracker.Integrations
                 "application/json"
             );
         }
+
+        protected T JsonToObject<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        protected IList<T> JsonToListObject<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<IList<T>>(json);
+        }
+
     }
 }

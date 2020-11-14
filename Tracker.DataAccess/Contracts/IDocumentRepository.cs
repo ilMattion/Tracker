@@ -8,5 +8,6 @@ namespace Tracker.DataAccess.Contracts
         IEnumerable<Document> GetAll();
 
         int Create(Document document);
+        bool Exists(int documentId);
     }
 }

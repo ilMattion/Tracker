@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Tracker.DataAccess.Entities
 {
@@ -15,5 +13,7 @@ namespace Tracker.DataAccess.Entities
         public int Size { get; set; }
 
         public int UniqueIdentifierReference { get; set; }
+
+        public IList<Process> Processes { get; set; }
     }
 }

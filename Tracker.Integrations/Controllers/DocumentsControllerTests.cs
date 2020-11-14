@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Tracker.DataAccess.Entities;
 using Tracker.Services.Models;
 
 namespace Tracker.Integrations.Controllers
