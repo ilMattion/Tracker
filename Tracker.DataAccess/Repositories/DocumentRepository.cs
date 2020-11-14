@@ -29,7 +29,7 @@ namespace Tracker.DataAccess.Repositories
 
         public IEnumerable<Document> Report()
         {
-            throw new NotImplementedException();
+            return trackerContext.Documents.ToList();
         }
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tracker</name>
+    </assembly>
+    <members>
+        <member name="M:Tracker.Controllers.DocumentsController.CreateDocument(Tracker.Services.Models.DocumentDto)">
+            <summary>
+            This API let you create one document.
+            </summary>
+            <param name="documentDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tracker.Controllers.DocumentsController.Report">
+            <summary>
+            This API let you get one report of actual document.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tracker.Controllers.ProcessesController.GetProcesses(System.Int32)">
+            <summary>
+            This API let you get all processes by its document.
+            </summary>
+            <param name="documentIdentifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tracker.Controllers.ProcessesController.CreateProcess(System.Int32,Tracker.Services.Models.ProcessDto)">
+            <summary>
+            This API let you create one process.
+            </summary>
+            <param name="documentIdentifier"></param>
+            <param name="processDto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

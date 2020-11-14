@@ -32,7 +32,7 @@ namespace Tracker
             services.AddScoped<IDocumentService, DocumentService>();
             services.AddControllers();
             services.AddDbContext<TrackerContext>(opt => opt.UseInMemoryDatabase("TrackerDb"));
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(setupAction => setupAction.IncludeXmlComments("Tracker.xml"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +49,7 @@ namespace Tracker
 
             app.UseSwaggerUI(c =>
             {
+                
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Traker V1");
             });
 
