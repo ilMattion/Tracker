@@ -49,7 +49,14 @@ namespace Tracker.Integrations.Controllers
         public async Task GetProcesses_DocumentIdExistsWithProcesses_ReturnExpectedList()
         {
             // Arrange
-            var document = fixture.Create<Document>();
+            var document = fixture.Build<Document>()
+                .With(entity => entity.Processes, new List<Process>()
+                {
+                    fixture.Build<Process>().With(x => x.Document, (Document)null).Create(),
+                    fixture.Build<Process>().With(x => x.Document, (Document)null).Create(),
+                    fixture.Build<Process>().With(x => x.Document, (Document)null).Create()
+                })
+                .Create();
 
             TrackerContext.Documents.Add(document);
             TrackerContext.SaveChanges();
@@ -60,7 +67,7 @@ namespace Tracker.Integrations.Controllers
             var result = JsonToListObject<ProcessDto>(json);
 
             // Assert
-            result.Should().BeEquivalentTo(document.Processes);
+            result.Should().BeEquivalentTo(document.Processes, options => options.Excluding(x => x.Document));
         }
 
 
