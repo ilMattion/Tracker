@@ -27,14 +27,21 @@ namespace Tracker.Controllers
             return Created($"/documents/{id}", documentDto);
         }
 
+
         /// <summary>
-        /// This API let you get one report of actual document.
+        /// This report let you retrieve documents by its cagetories.
         /// </summary>
+        /// <param name="category"></param>
         /// <returns></returns>
         [HttpGet("report")]
-        public IActionResult Report()
+        public IActionResult Report([FromQuery]string category)
         {
-            var result = documentService.Report();
+            if (string.IsNullOrEmpty(category))
+            {
+                return BadRequest();
+            }
+
+            var result = documentService.Report(category);
 
             return Ok(result);
         }

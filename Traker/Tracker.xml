@@ -11,10 +11,11 @@
             <param name="documentDto"></param>
             <returns></returns>
         </member>
-        <member name="M:Tracker.Controllers.DocumentsController.Report">
+        <member name="M:Tracker.Controllers.DocumentsController.Report(System.String)">
             <summary>
-            This API let you get one report of actual document.
+            This report let you retrieve documents by its cagetories.
             </summary>
+            <param name="category"></param>
             <returns></returns>
         </member>
         <member name="M:Tracker.Controllers.ProcessesController.GetProcesses(System.Int32)">

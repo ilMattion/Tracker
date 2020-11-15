@@ -42,13 +42,12 @@ namespace Tracker.Services
         {
             processDto.DocumentId = documentIdentifier;
             var process = mapper.Map<Process>(processDto);
-
             return processRepository.Create(process);
         }
 
-        public IEnumerable<DocumentDto> Report()
+        public IEnumerable<DocumentDto> Report(string documentCategory)
         {
-            var documents = documentRepository.Report();
+            var documents = documentRepository.Report(documentCategory);
             return mapper.Map<IList<DocumentDto>>(documents);
         }
     }

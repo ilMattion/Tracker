@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data.Common;
 using System.Linq;
 using Tracker.DataAccess;
 
@@ -30,15 +32,24 @@ namespace Tracker.Integrations
                 }
 
                 // Add ApplicationDbContext using an in-memory database for testing.
-                services.AddDbContext<TrackerContext>(options =>
-                {
-                    options.UseInMemoryDatabase("InMemoryDbForTesting");
-                });
+
+                services.AddDbContext<TrackerContext>(opt => opt.UseSqlite("Filename=test.db"));
 
                 // Build the service provider.
                 var sp = services.BuildServiceProvider();
                 TrackerContext = sp.GetService<TrackerContext>();
+                TrackerContext.Database.EnsureDeleted();
+                TrackerContext.Database.EnsureCreated();
             });
+        }
+
+        private static DbConnection CreateInMemoryDatabase()
+        {
+            var connection = new SqliteConnection("Filename=:memory:");
+
+            connection.Open();
+
+            return connection;
         }
     }
 }

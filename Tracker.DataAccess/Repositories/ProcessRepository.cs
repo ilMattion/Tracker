@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using Tracker.DataAccess.Contracts;
 using Tracker.DataAccess.Entities;
 
 namespace Tracker.DataAccess.Repositories
 {
-    public class ProcessRepository : IProcessRepository
+    public class ProcessRepository : Repository, IProcessRepository
     {
-        private readonly TrackerContext trackerContext;
-
-        public ProcessRepository(TrackerContext trakerContext)
+        public ProcessRepository(TrackerContext trackerContext) : base(trackerContext)
         {
-            this.trackerContext = trakerContext;
         }
 
         public int Create(Process process)

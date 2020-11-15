@@ -1,4 +1,6 @@
-﻿namespace Tracker.Services.Models
+﻿using System.Collections.Generic;
+
+namespace Tracker.Services.Models
 {
     public class DocumentDto
     {
@@ -11,5 +13,7 @@
         public int Size { get; set; }
 
         public string UniqueIdentifierReference { get; set; }
+
+        public IList<ProcessDto> Processes { get; set; }
     }
 }

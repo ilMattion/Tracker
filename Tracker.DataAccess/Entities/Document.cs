@@ -14,6 +14,6 @@ namespace Tracker.DataAccess.Entities
 
         public string UniqueIdentifierReference { get; set; }
 
-        public IList<Process> Processes { get; set; }
+        public List<Process> Processes { get; set; }
     }
 }

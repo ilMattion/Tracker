@@ -1,10 +1,12 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Data.Common;
 using Tracker.DataAccess;
 using Tracker.DataAccess.Contracts;
 using Tracker.DataAccess.Repositories;
@@ -31,7 +33,7 @@ namespace Tracker
             services.AddScoped<IProcessRepository, ProcessRepository>();
             services.AddScoped<IDocumentService, DocumentService>();
             services.AddControllers();
-            services.AddDbContext<TrackerContext>(opt => opt.UseInMemoryDatabase("TrackerDb"));
+            services.AddDbContext<TrackerContext>(opt => opt.UseSqlite("Filename=db.db"));
             services.AddSwaggerGen(setupAction => setupAction.IncludeXmlComments("Tracker.xml"));
         }
 
@@ -43,6 +45,8 @@ namespace Tracker
                 app.UseDeveloperExceptionPage();
             }
 
+            app.EnsureDatabaseIsCreated();
+
             app.UseHttpsRedirection();
 
             app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -51,7 +55,7 @@ namespace Tracker
 
             app.UseSwaggerUI(c =>
             {
-                
+
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Traker V1");
             });
 
