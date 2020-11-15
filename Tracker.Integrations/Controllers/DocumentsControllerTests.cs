@@ -15,7 +15,7 @@ namespace Tracker.Integrations.Controllers
         public async Task CreateDocument_ParameterDocumentDtoValid_ReturnCreated()
         {
             // Arrange
-            var documentDto = fixture.Create<DocumentDto>();
+            var documentDto = fixture.Create<DocumentFormDto>();
 
             // Act
             var httpResponseMessage = await httpClient.PostAsync("documents", ObjectToJsonContent(documentDto));
@@ -28,7 +28,7 @@ namespace Tracker.Integrations.Controllers
         public async Task CreateDocument_ParameterDocumentDtoValid_EntityCreatedCorrectly()
         {
             // Arrange
-            var documentDto = fixture.Create<DocumentDto>();
+            var documentDto = fixture.Create<DocumentFormDto>();
 
             // Act
             await httpClient.PostAsync("documents", ObjectToJsonContent(documentDto));

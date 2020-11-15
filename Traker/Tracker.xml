@@ -4,7 +4,7 @@
         <name>Tracker</name>
     </assembly>
     <members>
-        <member name="M:Tracker.Controllers.DocumentsController.CreateDocument(Tracker.Services.Models.DocumentDto)">
+        <member name="M:Tracker.Controllers.DocumentsController.CreateDocument(Tracker.Services.Models.DocumentFormDto)">
             <summary>
             This API let you create one document.
             </summary>
@@ -24,7 +24,7 @@
             <param name="documentIdentifier"></param>
             <returns></returns>
         </member>
-        <member name="M:Tracker.Controllers.ProcessesController.CreateProcess(System.Int32,Tracker.Services.Models.ProcessDto)">
+        <member name="M:Tracker.Controllers.ProcessesController.CreateProcess(System.Int32,Tracker.Services.Models.ProcessFormDto)">
             <summary>
             This API let you create one process.
             </summary>

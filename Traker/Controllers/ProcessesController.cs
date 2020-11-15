@@ -43,7 +43,7 @@ namespace Tracker.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("processes")]
-        public IActionResult CreateProcess(int documentIdentifier, [FromBody] ProcessDto processDto)
+        public IActionResult CreateProcess(int documentIdentifier, [FromBody] ProcessFormDto processDto)
         {
             if (!documentService.Exists(documentIdentifier))
             {

@@ -2,8 +2,8 @@
 {
     public enum ProcessType
     {
-        ProtocolNumber = 0,
-        Archive = 1,
-        Signature = 2
+        ProtocolNumber,
+        Archive ,
+        Signature
     }
 }

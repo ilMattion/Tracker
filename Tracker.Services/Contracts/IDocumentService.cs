@@ -5,10 +5,10 @@ namespace Tracker.Services.Contracts
 {
     public interface IDocumentService
     {
-        int Create(DocumentDto document);
+        int Create(DocumentFormDto document);
         bool Exists(int documentIndentifier);
         IEnumerable<ProcessDto> GetProcesses(int documentIndentifier);
-        int CreateProcess(int documentIdentifier, ProcessDto processDto);
+        int CreateProcess(int documentIdentifier, ProcessFormDto processDto);
         IEnumerable<DocumentDto> Report();
     }
 }

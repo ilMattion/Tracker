@@ -26,7 +26,7 @@ namespace Tracker.Services
             return documentRepository.Exists(documentId);
         }
 
-        public int Create(DocumentDto document)
+        public int Create(DocumentFormDto document)
         {
             Document entity = mapper.Map<Document>(document);
             return documentRepository.Create(entity);
@@ -38,7 +38,7 @@ namespace Tracker.Services
             return mapper.Map<IList<ProcessDto>>(processes);
         }
 
-        public int CreateProcess(int documentIdentifier, ProcessDto processDto)
+        public int CreateProcess(int documentIdentifier, ProcessFormDto processDto)
         {
             processDto.DocumentId = documentIdentifier;
             var process = mapper.Map<Process>(processDto);

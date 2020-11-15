@@ -1,4 +1,6 @@
-﻿using Tracker.Models;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Tracker.Models;
 
 namespace Tracker.Services.Models
 {
@@ -6,6 +8,7 @@ namespace Tracker.Services.Models
     {
         public int Id { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public ProcessType ProcessType { get; set; }
 
         public int TimeSpent { get; set; }

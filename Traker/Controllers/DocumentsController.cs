@@ -21,10 +21,10 @@ namespace Tracker.Controllers
         /// <param name="documentDto"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult CreateDocument([FromBody] DocumentDto documentDto)
+        public IActionResult CreateDocument([FromBody] DocumentFormDto documentDto)
         {
-            int documentId = documentService.Create(documentDto);
-            return Created($"/documents/{documentId}", documentDto);
+            int id = documentService.Create(documentDto);
+            return Created($"/documents/{id}", documentDto);
         }
 
         /// <summary>

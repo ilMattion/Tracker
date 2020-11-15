@@ -89,7 +89,7 @@ namespace Tracker.Integrations.Controllers
             TrackerContext.Add(document);
             TrackerContext.SaveChanges();
 
-            var processDto = fixture.Create<ProcessDto>();
+            var processDto = fixture.Create<ProcessFormDto>();
 
             // Act
             var httpResponseMessage = await httpClient.PostAsync($"documents/{document.Id}/processes", ObjectToJsonContent(processDto));
