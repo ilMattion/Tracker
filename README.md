@@ -6,9 +6,9 @@ This is a sample app for catalogue documents and the processes that will be perf
 
 The sample processes than can be performed on a document are:
 
-	* Apply a protocol number
-	* Archive
-	* Apply a digital sign
+* Apply a protocol number
+* Archive
+* Apply a digital sign
 
 # API Documentation
 
