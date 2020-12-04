@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.Sqlite;
@@ -6,7 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Data.Common;
+using System.Text;
 using Tracker.DataAccess;
 using Tracker.DataAccess.Contracts;
 using Tracker.DataAccess.Repositories;
@@ -32,6 +36,21 @@ namespace Tracker
             services.AddScoped<IDocumentRepository, DocumentRepository>();
             services.AddScoped<IProcessRepository, ProcessRepository>();
             services.AddScoped<IDocumentService, DocumentService>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                        ClockSkew = TimeSpan.FromMinutes(1)
+                    };
+                });
             services.AddControllers();
             services.AddDbContext<TrackerContext>(opt => opt.UseSqlite("Filename=db.db"));
             services.AddSwaggerGen(setupAction => setupAction.IncludeXmlComments("Tracker.xml"));
@@ -51,11 +70,12 @@ namespace Tracker
 
             app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
+            app.UseAuthentication();
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
             {
-
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Traker V1");
             });
 

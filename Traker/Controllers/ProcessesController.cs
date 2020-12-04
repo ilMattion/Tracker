@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Tracker.Services.Contracts;
 using Tracker.Services.Models;
 
 namespace Tracker.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("documents/{documentIdentifier}")]
     public class ProcessesController : ControllerBase

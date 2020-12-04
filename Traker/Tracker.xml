@@ -4,6 +4,13 @@
         <name>Tracker</name>
     </assembly>
     <members>
+        <member name="M:Tracker.Controllers.AuthController.CreateDocument(Tracker.Services.Models.LoginDto)">
+            <summary>
+            This API let you get access token.
+            </summary>
+            <param name="LoginDto"></param>
+            <returns></returns>
+        </member>
         <member name="M:Tracker.Controllers.DocumentsController.CreateDocument(Tracker.Services.Models.DocumentFormDto)">
             <summary>
             This API let you create one document.
