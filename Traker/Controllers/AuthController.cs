@@ -23,7 +23,7 @@ namespace Tracker.Controllers
         /// <summary>
         /// This API let you get access token.
         /// </summary>
-        /// <param name="LoginDto"></param>
+        /// <param name="loginDto"></param>
         /// <returns></returns>
         [HttpPost("login")]
         public IActionResult CreateDocument([FromBody] LoginDto loginDto)
@@ -45,7 +45,7 @@ namespace Tracker.Controllers
             var token = new JwtSecurityToken(config["Jwt:Issuer"],    
               config["Jwt:Issuer"],    
               null,    
-              expires: DateTime.Now.AddMinutes(120),    
+              expires: DateTime.Now.AddMinutes(1),    
               signingCredentials: credentials);    
     
             return new JwtSecurityTokenHandler().WriteToken(token);    

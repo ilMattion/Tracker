@@ -10,5 +10,6 @@ namespace Tracker.Services.Contracts
         IEnumerable<ProcessDto> GetProcesses(int documentIndentifier);
         int CreateProcess(int documentIdentifier, ProcessFormDto processDto);
         IEnumerable<DocumentDto> Report(string documentCategory);
+        IEnumerable<DocumentDto> ReportByLastTimeProcess(int timeProcess);
     }
 }

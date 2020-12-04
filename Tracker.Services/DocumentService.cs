@@ -50,5 +50,11 @@ namespace Tracker.Services
             var documents = documentRepository.Report(documentCategory);
             return mapper.Map<IList<DocumentDto>>(documents);
         }
+
+        public IEnumerable<DocumentDto> ReportByLastTimeProcess(int timeProcess)
+        {
+            var documents = documentRepository.ReportByLastTimeProcess(timeProcess);
+            return mapper.Map<IList<DocumentDto>>(documents);
+        }
     }
 }

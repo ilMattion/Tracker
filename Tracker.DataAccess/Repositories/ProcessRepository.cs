@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Tracker.DataAccess.Contracts;
@@ -14,6 +14,7 @@ namespace Tracker.DataAccess.Repositories
 
         public int Create(Process process)
         {
+            process.CreationDate = DateTime.Now.AddMinutes(-59);
             trackerContext.Processes.Add(process);
             trackerContext.SaveChanges();
             return process.Id;

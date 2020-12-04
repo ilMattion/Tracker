@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Tracker.DataAccess.Contracts;
@@ -17,7 +18,7 @@ namespace Tracker.DataAccess.Repositories
         {
             return trackerContext.Documents.Any(doc => doc.Id == documentId);
         }
-        
+
         public Document GetById(int documentIdentifier)
         {
             return trackerContext.Documents.FirstOrDefault(entity => entity.Id == documentIdentifier);
@@ -33,6 +34,23 @@ namespace Tracker.DataAccess.Repositories
         public IEnumerable<Document> Report(string documentCategory)
         {
             return trackerContext.Documents.Where(x => x.Category == documentCategory).Include(entity => entity.Processes).ToList();
+        }
+
+        public IEnumerable<Document> ReportByLastTimeProcess(int timeProcess)
+        {
+            return (from document in trackerContext.Documents
+                    join process in trackerContext.Processes
+                    on document.Id equals process.DocumentId
+                    where DateTime.Now.AddHours(timeProcess * -1) <= process.CreationDate
+                    select new Document()
+                    {
+                        Category = document.Category,
+                        Id = document.Id,
+                        Name = document.Name,
+                        Processes = document.Processes,
+                        Size = document.Size,
+                        UniqueIdentifierReference = document.UniqueIdentifierReference
+                    }).Distinct();
         }
     }
 }

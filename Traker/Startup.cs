@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Data.Common;
 using System.Text;
+using System.Text.Json.Serialization;
 using Tracker.DataAccess;
 using Tracker.DataAccess.Contracts;
 using Tracker.DataAccess.Repositories;
@@ -47,11 +48,12 @@ namespace Tracker
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = Configuration["Jwt:Issuer"],
                         ValidAudience = Configuration["Jwt:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
-                        ClockSkew = TimeSpan.FromMinutes(1)
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                     };
                 });
-            services.AddControllers();
+            services.AddControllers()
+            .AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddDbContext<TrackerContext>(opt => opt.UseSqlite("Filename=db.db"));
             services.AddSwaggerGen(setupAction => setupAction.IncludeXmlComments("Tracker.xml"));
         }

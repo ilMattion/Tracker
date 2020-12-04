@@ -1,4 +1,5 @@
-﻿using Tracker.Models;
+﻿using System;
+using Tracker.Models;
 
 namespace Tracker.DataAccess.Entities
 {
@@ -11,6 +12,8 @@ namespace Tracker.DataAccess.Entities
         public int TimeSpent { get; set; }
 
         public int DocumentId { get; set; }
+
+        public DateTime CreationDate { get; set; }
 
         public Document Document { get; set; }
     }

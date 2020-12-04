@@ -36,7 +36,7 @@ namespace Tracker.Controllers
         /// <param name="category"></param>
         /// <returns></returns>
         [HttpGet("report")]
-        public IActionResult Report([FromQuery]string category)
+        public IActionResult Report([FromQuery] string category)
         {
             if (string.IsNullOrEmpty(category))
             {
@@ -44,6 +44,19 @@ namespace Tracker.Controllers
             }
 
             var result = documentService.Report(category);
+
+            return Ok(result);
+        }
+
+        [HttpGet("report/lasttimeprocess/{timeProcess}")]
+        public IActionResult ReportByLastTimeProcess(int timeProcess)
+        {
+            if (timeProcess < 1)
+            {
+                return BadRequest("The time process cannot be less than one.");
+            }
+
+            var result = documentService.ReportByLastTimeProcess(timeProcess);
 
             return Ok(result);
         }
